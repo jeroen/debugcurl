@@ -27,11 +27,30 @@ Then configure with openssl and nghttp2:
   --enable-curldebug \
 ```
 
+Here is another configuration for http/1 build:
+
+```
+./buildconf
+./configure \
+  --without-nghttp2 \
+  --with-darwinssl \
+  --without-ca-bundle \
+  --without-ca-path \
+  --enable-static \
+  --disable-shared \
+  --enable-debug \
+  --enable-curldebug \
+  --without-brotli \
+  --without-librtmp \
+  --without-libidn2 \
+  --without-ldap
+```
+
 Confirm the config status. Then make and install (you really need to install because otherwise LLDB will probably use the system libcurl).
 
 ```
 make -j8
-make install
+make install DESTDIR="/Users/jeroen/libcurl"
 ```
 
 Now build an application:
